@@ -1,6 +1,8 @@
 sbt-version-info-plugin
 =======================
 
+Forked from  https://github.com/guardian/sbt-version-info-plugin to provide same functionality but from a jenkins CI environemnt.
+
 This sbt 0.10 plugin generates a version.txt file in the root of your classpath.
 This is typically used by the
 [guardian-management](https://github.com/guardian/guardian-management) manifest reporter,
