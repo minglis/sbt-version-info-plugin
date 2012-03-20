@@ -14,9 +14,9 @@ object VersionInfo extends Plugin {
 
 
   override val settings = Seq(
-    branch := "trunk",
-    buildNumber := System.getProperty("build.number", "DEV"),
-    vcsNumber := System.getProperty("build.vcs.number", "DEV"),
+    branch := System.getProperty("GIT_BRANCH", "DEV"),
+    buildNumber := System.getProperty("BUILD_NUMBER", "DEV"),
+    vcsNumber := System.getProperty("GIT_COMMIT", "DEV"),
     resourceGenerators in Compile <+= (resourceManaged, branch, buildNumber, vcsNumber, streams) map buildFile
   )
 
