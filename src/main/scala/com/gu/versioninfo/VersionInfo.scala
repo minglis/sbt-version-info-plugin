@@ -28,7 +28,7 @@ object VersionInfo extends Plugin {
       "Built-By" -> System.getProperty("user.name", "<unknown>"),
       "Built-On" -> InetAddress.getLocalHost.getHostName)
 
-    val versionFileContents = versionInfo.map{ case (x, y) => x + ": " + y }.toList.sorted
+    val versionFileContents = versionInfo.map{ case (x, y) => x + "> " + y }.toList.sorted
 
     val versionFile = outDir / "version.txt"
     s.log.debug("Writing to " + versionFile + ":\n   " + versionFileContents.mkString("\n   "))
