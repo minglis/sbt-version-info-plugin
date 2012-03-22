@@ -17,7 +17,7 @@ object VersionInfo extends Plugin {
     branch := System.getProperty("GIT_BRANCH", "DEV"),
     buildNumber := System.getProperty("BUILD_NUMBER", "DEV"),
     vcsNumber := System.getProperty("GIT_COMMIT", "DEV"),
-    resourceGenerators in Compile <+= (resourceManaged, branch, buildNumber, vcsNumber, streams) map buildFile
+    resourceGenerators in Compile <+= (classDirectory, branch, buildNumber, vcsNumber, streams) map buildFile
   )
 
   def buildFile(outDir: File, branch: String, buildNum: String, vcsNum: String, s: TaskStreams) = {
