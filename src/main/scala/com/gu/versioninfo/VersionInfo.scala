@@ -38,7 +38,7 @@ object VersionInfo extends Plugin {
             vcsNumber
         )
 
-      val confFile = sourceDir / "../" / "conf" / "version.conf"
+      val confFile = base  / "conf" / "version.conf"
       s.log.debug("Writing to " + confFile + "  \n " + template)
 
       IO.write(confFile, template)
