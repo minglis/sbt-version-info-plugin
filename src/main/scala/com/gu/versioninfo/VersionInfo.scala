@@ -31,11 +31,11 @@ object VersionInfo extends Plugin {
           Revision="%s"
       }
       """ format (
-            buildNumber, 
+            buildNumber.name, 
             System.getProperty("user.name", "<unknown>") , 
             InetAddress.getLocalHost.getHostName,
             new Date().toString,
-            vcsNumber
+            vcsNumber.name
         )
 
       val confFile = base  / "conf" / "version.conf"
