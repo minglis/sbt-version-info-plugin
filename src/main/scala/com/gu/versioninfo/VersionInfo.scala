@@ -17,25 +17,33 @@ object VersionInfo extends Plugin {
     branch := System.getProperty("GIT_BRANCH", "DEV"),
     buildNumber := System.getProperty("BUILD_NUMBER", "DEV"),
     vcsNumber := System.getProperty("GIT_COMMIT", "DEV"),
-    resourceGenerators in Compile <+= (classDirectory, branch, buildNumber, vcsNumber, streams) map buildFile
+    sourceGenerators in Compile <+= buildFile
   )
 
-  def buildFile(outDir: File, branch: String, buildNum: String, vcsNum: String, s: TaskStreams) = {
-    val versionInfo = Map(
-      "Revision" -> vcsNum,
-      "Build" -> buildNum,
-      "Date" -> new Date().toString,
-      "Built-By" -> System.getProperty("user.name", "<unknown>"),
-      "Built-On" -> InetAddress.getLocalHost.getHostName)
+  private def buildFile(baseDirectory, streams, sourceManaged).map { (base, s, sourceDir) => {
 
-    val versionFileContents = versionInfo.map{ case (x, y) => x + "> " + y }.toList.sorted
+      val template = """
+      {
+          Build="%s",
+          Built-By="%s",
+          Built-On="%s",
+          Date="%s",
+          Revision="%s"
+      }
+      """ format (
+            buildNum, 
+            System.getProperty("user.name", "<unknown>") , 
+            InetAddress.getLocalHost.getHostName,
+            new Date().toString,
+            vcsNum
+        )
 
-    val versionFile = outDir / "version.txt"
-    s.log.debug("Writing to " + versionFile + ":\n   " + versionFileContents.mkString("\n   "))
+    val confFile = sourceDir / "../" / conf / "version.confconfFile"
+    s.log.debug("Writing to " + confFile + "  \n " + template)
 
-    IO.write(versionFile, versionFileContents mkString ("\n") )
+    IO.write(confFile, template
 
-    Seq(versionFile)
+    Seq(confFile)
   }
 
 }
