@@ -20,22 +20,24 @@ object VersionInfo extends Plugin {
     sourceGenerators in Compile <+= buildFile
   )
 
-  private def buildFile = (baseDirectory, streams, sourceManaged).map { (base, s, sourceDir) => {
+  private def buildFile = (baseDirectory, streams, sourceManaged, branch, buildNumber, vcsNumber).map { (base, s, sourceDir, branchName, buildNum, vcsNum) => {
 
       val template = """
       {
           Build="%s",
+          Branch="%s",
           Built-By="%s",
           Built-On="%s",
           Date="%s",
           Revision="%s"
       }
       """ format (
-            buildNumber.name, 
+            buildNum, 
+            branchName,
             System.getProperty("user.name", "<unknown>") , 
             InetAddress.getLocalHost.getHostName,
             new Date().toString,
-            vcsNumber.name
+            vcsNum
         )
 
       val confFile = base  / "conf" / "version.conf"
