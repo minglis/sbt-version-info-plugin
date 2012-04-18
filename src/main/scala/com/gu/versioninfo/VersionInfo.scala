@@ -35,7 +35,7 @@ object VersionInfo extends Plugin {
             System.getProperty("user.name", "<unknown>") , 
             InetAddress.getLocalHost.getHostName,
             new Date().toString,
-            vcsNum
+            vcsNumber
         )
 
       val confFile = sourceDir / "../" / "conf" / "version.conf"
