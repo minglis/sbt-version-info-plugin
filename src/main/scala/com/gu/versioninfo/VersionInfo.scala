@@ -41,7 +41,7 @@ object VersionInfo extends Plugin {
       val confFile = sourceDir / "../" / conf / "version.confconfFile"
       s.log.debug("Writing to " + confFile + "  \n " + template)
 
-      IO.write(confFile, template
+      IO.write(confFile, template)
 
       Seq(confFile)
     }
