@@ -47,3 +47,5 @@ object VersionInfo extends Plugin {
   }
 
 }
+
+}
