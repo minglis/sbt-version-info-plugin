@@ -31,14 +31,14 @@ object VersionInfo extends Plugin {
           Revision="%s"
       }
       """ format (
-            buildNum, 
+            buildNumber, 
             System.getProperty("user.name", "<unknown>") , 
             InetAddress.getLocalHost.getHostName,
             new Date().toString,
             vcsNum
         )
 
-      val confFile = sourceDir / "../" / conf / "version.confconfFile"
+      val confFile = sourceDir / "../" / "conf" / "version.conf"
       s.log.debug("Writing to " + confFile + "  \n " + template)
 
       IO.write(confFile, template)
