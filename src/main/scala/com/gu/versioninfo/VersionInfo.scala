@@ -20,7 +20,7 @@ object VersionInfo extends Plugin {
     sourceGenerators in Compile <+= buildFile
   )
 
-  private def buildFile(baseDirectory, streams, sourceManaged).map { (base, s, sourceDir) => {
+  private def buildFile = (baseDirectory, streams, sourceManaged).map { (base, s, sourceDir) => {
 
       val template = """
       {
@@ -38,14 +38,13 @@ object VersionInfo extends Plugin {
             vcsNum
         )
 
-    val confFile = sourceDir / "../" / conf / "version.confconfFile"
-    s.log.debug("Writing to " + confFile + "  \n " + template)
+      val confFile = sourceDir / "../" / conf / "version.confconfFile"
+      s.log.debug("Writing to " + confFile + "  \n " + template)
 
-    IO.write(confFile, template
+      IO.write(confFile, template
 
-    Seq(confFile)
+      Seq(confFile)
+    }
+
   }
-
-}
-
 }
