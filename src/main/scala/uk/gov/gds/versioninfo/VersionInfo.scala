@@ -40,10 +40,11 @@ object VersionInfo extends Plugin {
             vcsNum
         )
 
-      val confFile = base  / "conf" / "version.conf"
+      val conf = base  / "conf" / "version.conf"
       s.log.debug("Writing to " + confFile + "  \n " + template)
 
-      IO.write(confFile, template)
+      if(IO.exists(base / "conf"))
+        IO.write(confFile, template)
 
       Seq(confFile)
     }
