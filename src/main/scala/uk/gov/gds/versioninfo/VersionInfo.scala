@@ -1,4 +1,4 @@
-package com.gu.versioninfo
+package uk.gov.gds.versioninfo
 
 import java.net.InetAddress
 import java.util.Date
