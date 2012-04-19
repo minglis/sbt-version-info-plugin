@@ -43,10 +43,12 @@ object VersionInfo extends Plugin {
       val confFile = base  / "conf" / "version.conf"
       s.log.debug("Writing to " + confFile + "  \n " + template)
 
-      if((base / "conf").exists)
+      if((base / "conf").exists) {
         IO.write(confFile, template)
-
-      Seq(confFile)
+        Seq(confFile)
+      } else {
+        Seq()
+      }
     }
 
   }
