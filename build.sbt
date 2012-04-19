@@ -2,21 +2,19 @@ import java.util.jar._
 
 sbtPlugin := true
 
-crossScalaVersions in ThisBuild := Seq("2.9.1")
-
-version in ThisBuild := "5.7-SNAPSHOT"
+version in ThisBuild := "1.0"
 
 organization in ThisBuild := "gov.gds"
 
 name := "sbt-version-info-plugin"
 
-publishArtifact := false
+publishArtifact := true
 
 packageOptions in ThisBuild <+= (version, name) map { (v, n) =>
   Package.ManifestAttributes(
     Attributes.Name.IMPLEMENTATION_VERSION -> v,
     Attributes.Name.IMPLEMENTATION_TITLE -> n,
-    Attributes.Name.IMPLEMENTATION_VENDOR -> "guardian.co.uk"
+    Attributes.Name.IMPLEMENTATION_VENDOR -> "alphagov.co.uk"
   )
 }
 
