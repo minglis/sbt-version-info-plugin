@@ -17,20 +17,20 @@ object VersionInfo extends Plugin {
     branch := System.getProperty("GIT_BRANCH", "DEV"),
     buildNumber := System.getProperty("BUILD_NUMBER", "DEV"),
     vcsNumber := System.getProperty("GIT_COMMIT", "DEV"),
-    resourceGenerators in Compile <+= buildFile
+    resourceGenerators in packageSrc <+= buildFile
   )
 
   private def buildFile = (baseDirectory, streams, sourceManaged, branch, buildNumber, vcsNumber).map { (base, s, sourceDir, branchName, buildNum, vcsNum) => {
 
       val template = """
-      {
-          Build="%s",
-          Branch="%s",
-          Built-By="%s",
-          Built-On="%s",
-          Date="%s",
-          Revision="%s"
-      }
+{
+    Build="%s",
+    Branch="%s",
+    Built-By="%s",
+    Built-On="%s",
+    Date="%s",
+    Revision="%s"
+}
       """ format (
             buildNum, 
             branchName,
