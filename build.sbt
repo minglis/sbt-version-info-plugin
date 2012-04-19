@@ -2,7 +2,7 @@ import java.util.jar._
 
 sbtPlugin := true
 
-version in ThisBuild := "1.2"
+version in ThisBuild := "1.2.1"
 
 organization in ThisBuild := "gov.gds"
 
